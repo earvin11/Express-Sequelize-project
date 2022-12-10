@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const colors = require('@colors/colors')
 
-const dbConnection = require('../db/config');
+const { dbConnection } = require('../db/config');
 
 
 class Server {
@@ -27,7 +28,7 @@ class Server {
         try {
             
             await dbConnection.authenticate();
-            console.log('Database online');
+            console.log('Database online'.blue);
 
         } catch (error) {
             throw new Error(error);
@@ -45,7 +46,7 @@ class Server {
 
     listen() {
         this.app.listen( this.port, () => {
-            console.log('Server running in port ', this.port);
+            console.log('Server running in port '.green, this.port);
         });
     }
 }
